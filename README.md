@@ -23,4 +23,4 @@ After getting project from the Github
 ## Demo User information
 
 - email: admin@gmail.com
-- password: 123 
+- password: 123456
