@@ -4,8 +4,10 @@
 
 In this project I'm Using
 
+- Laravel 11
 - SQLite Database.
 - Vue JS For Frontend - (vue3, vue-router and pinia).
+- Sweetalert for Confirmation
 - Scantum package for authentication system
 - Api For Backend with Frontend Communication.
 
@@ -21,6 +23,5 @@ After getting project from the Github
 - migrate the database with seeder
 
 ## Demo User information
-
 - email: admin@gmail.com
 - password: 123456

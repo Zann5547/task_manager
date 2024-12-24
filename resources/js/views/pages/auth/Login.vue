@@ -10,6 +10,7 @@
                         name="email"
                         id="email"
                         autocomplete="email"
+                        placeholder="admin@gmail.com"
                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     />
                     <span class="text-xs text-red-500" v-if="errors?.email">{{ errors.email[0] }}</span>
@@ -27,6 +28,7 @@
                         type="password"
                         name="password"
                         id="password"
+                        placeholder="123456"
                         autocomplete="password"
                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     />
@@ -39,7 +41,7 @@
                     :disabled="authStore.loading"
                     type="submit"
                     :class="{ 'cursor-not-allowed': authStore.loading }"
-                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                 >
                     <svg v-if="authStore.loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -50,7 +52,7 @@
             </div>
         </form>
         <p class="mt-10 text-center text-sm/6 text-gray-500">
-            <router-link :to="{ name: 'register' }" class="font-semibold text-indigo-600 hover:text-indigo-500">Don't have an account?</router-link>
+            <router-link :to="{ name: 'register' }" class="font-semibold text-gray-800 hover:text-gray-500">Don't have an account?</router-link>
         </p>
     </GuestLayout>
 </template>

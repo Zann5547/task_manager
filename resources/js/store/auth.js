@@ -19,10 +19,9 @@ export const useAuthStore = defineStore('authStore', {
                     headers: { Authorization: `Bearer ${this.token}` }
                 })
                 this.user = response.data
-                console.log(this.user)
             } catch(error) {
                 if (error.response && error.response.data.message) {
-                    this.errors.general = error.response.data.message
+                    this.errors.general = error.response?.data?.message
                 }
             } finally {
                 this.loading = false;
@@ -40,7 +39,7 @@ export const useAuthStore = defineStore('authStore', {
                 this.router.push({ name: 'app.dashboard' })
             } catch(error) {
                 if (error.response && error.response.data.errors) {
-                    this.errors = error.response.data.errors
+                    this.errors = error.response?.data?.errors
                 }
                 throw error
             } finally {
@@ -60,10 +59,10 @@ export const useAuthStore = defineStore('authStore', {
             } catch(error) {
                 if (error.response) {
                     if (error.response.data.message) {
-                        this.errors.general = error.response.data.message;
+                        this.errors.general = error.response?.data?.message;
                     }
                     if (error.response.data.errors) {
-                        this.errors = error.response.data.errors;
+                        this.errors = error.response?.data?.errors;
                     }
                 } else {
                     this.errors.general = 'An unexpected error occurred.';

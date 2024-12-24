@@ -62,7 +62,7 @@
                     :disabled="authStore.loading"
                     type="submit"
                     :class="{ 'cursor-not-allowed': authStore.loading }"
-                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                 >
                     <svg v-if="authStore.loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -74,7 +74,7 @@
         </form>
 
         <p class="mt-10 text-center text-sm/6 text-gray-500">
-            <router-link :to="{ name: 'login' }" class="font-semibold text-indigo-600 hover:text-indigo-500">Already have an account?</router-link>
+            <router-link :to="{ name: 'login' }" class="font-semibold text-gray-800 hover:text-gray-500">Already have an account?</router-link>
         </p>
     </GuestLayout>
 </template>
