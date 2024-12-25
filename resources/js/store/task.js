@@ -9,24 +9,34 @@ export const useTaskStore = defineStore('taskStore', {
             errors: {},
             task: [],
             tasks: {},
+            links: [],
+            from: null,
+            to: null,
+            page: 1,
+            limit: null,
+            total: null
+
         }
     },
 
     actions: {
-        async getAllTasks(status = 'all', sort = 'asc')
+        async getAllTasks(status = 'all', sort = 'asc', page = 1)
         {
             this.loading = true,
             this.errors = {}
             try{
-                const params = {}
+                const params = { sort, page }
                 if (status !== 'all') {
                     params.status = status
                 }
-                params.sort = sort
-                const response = await axiosClient.get('tasks', {
-                    params: params,
-                })
+                const response = await axiosClient.get('tasks', { params })
                 this.tasks = response.data
+                this.links = response.meta.links
+                this.from = response.meta.from
+                this.to = response.meta.to
+                this.limit = response.meta.per_page
+                this.page = response.meta.current_page
+                this.total = response.meta.total
             } catch(error) {
                 console.error('Error fetching tasks:', error)
             } finally {

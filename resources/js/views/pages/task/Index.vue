@@ -95,6 +95,36 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="flex justify-between items-center mt-5">
+                <span>
+                    Showing {{ from }} from {{ to }}
+                </span>
+                <nav
+                    v-if="total > limit"
+                    class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px"
+                    aria-label="Pagination"
+                >
+                    <a
+                        v-for="(link, i) of links"
+                        :key="i"
+                        :disabled="!link.url"
+                        href="#"
+                        @click="getForPage($event, link)"
+                        aria-current="page"
+                        class="relative inline-flex items-center px-4 py-2 border text-sm font-medium whitespace-nowrap"
+                        :class="[
+                                link.active
+                                    ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+                                    : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
+                                i === 0 ? 'rounded-l-md' : '',
+                                i === links.length - 1 ? 'rounded-r-md' : '',
+                                !link.url ? 'bg-gray-100 text-gray-700 cursor-not-allowed': ''
+                            ]"
+                        v-html="link.label"
+                    >
+                    </a>
+                </nav>
+            </div>
         </div>
     </div>
 </template>
@@ -108,16 +138,32 @@ import Spinner from '../../components/core/Spinner.vue'
 const taskStore = useTaskStore()
 const tasks = computed(() => taskStore.tasks)
 const loading = computed(() => taskStore.loading)
+const links = computed(() => taskStore.links)
+const from = computed(() => taskStore.from)
+const to = computed(() => taskStore.to)
+const limit = computed(() => taskStore.limit)
+const total = computed(() => taskStore.total)
+
 
 const status = ref('all')
 const sortOrder = ref('asc')
+const page = ref(1)
 
 watch([status, sortOrder], ([newStatus, newSortOrder]) => {
   taskStore.getAllTasks(newStatus, newSortOrder)
 })
+
+const getForPage = (ev, link) => {
+    ev.preventDefault();
+    if (!link.url || link.active) {
+        return;
+    }
+    const page = new URL(link.url).searchParams.get("page") || 1;
+    taskStore.getAllTasks(status.value, sortOrder.value, Number(page));
+}
 const deleteTask = (id => taskStore.deleteTask(id))
 onMounted(() => {
-    taskStore.getAllTasks(status.value, sortOrder.value)
+    taskStore.getAllTasks(status.value, sortOrder.value, page.value)
 })
 </script>
 

@@ -25,7 +25,7 @@ class TaskController extends Controller
                         return $query->where('status', ucfirst($status));
                     })
                     ->orderBy('due_date', $sort)
-                    ->paginate(15);
+                    ->paginate(10);
         return TaskListResource::collection($tasks);
     }
 
