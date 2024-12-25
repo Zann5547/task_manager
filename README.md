@@ -21,6 +21,8 @@ After getting project from the Github
 
 - Generate .env file
 - migrate the database with seeder
+- then run command 
+- php artisan serve and npm run dev
 
 ## Demo User information
 - email: admin@gmail.com
